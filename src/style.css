@@ -1,0 +1,390 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================= BASE ================= */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply text-brand-navy;
+  }
+  ::selection {
+    @apply bg-brand-yellow text-brand-navy;
+  }
+}
+
+/* ================= WHITE BACKGROUND WITH SUBTLE BOX TEXTURE ================= */
+.white-box-bg {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(rgba(200, 200, 200, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 200, 200, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ================= COMPONENTS ================= */
+@layer components {
+  .container-x {
+    @apply mx-auto max-w-7xl px-6 lg:px-8;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-yellow px-8 py-4 text-sm font-bold text-brand-navy shadow-lg shadow-brand-yellow/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-yellow/40;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-ocean px-8 py-4 text-sm font-bold text-brand-ocean transition-all duration-300 hover:bg-brand-ocean hover:text-white;
+  }
+  .nav-link {
+    @apply text-sm font-semibold text-slate-600 transition-colors duration-300 hover:text-brand-ocean;
+  }
+  .section-eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full bg-brand-ocean/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-brand-ocean ring-1 ring-brand-ocean/20;
+  }
+  .field {
+    @apply w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-brand-navy placeholder-gray-400 transition-shadow duration-300 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-brand-ocean;
+  }
+  .chip {
+    @apply rounded-full px-3 py-1 text-[11px] font-bold ring-1;
+  }
+  .chip-green {
+    @apply bg-brand-green/10 text-brand-green ring-brand-green/25;
+  }
+  .chip-ocean {
+    @apply bg-brand-ocean/10 text-brand-ocean ring-brand-ocean/25;
+  }
+  .gallery-btn {
+    @apply grid h-12 w-12 place-items-center rounded-full border border-gray-300 bg-white text-brand-navy transition-all duration-300 hover:border-brand-yellow hover:text-brand-yellow;
+  }
+}
+
+/* ================= FOOTER — DARK NAVY WITH DECORATIVE BOX GRID ================= */
+.footer-grid {
+  background-image:
+    linear-gradient(#1e293b 1px, transparent 1px),
+    linear-gradient(90deg, #1e293b 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ================= HERO — CSS 3D TRUCK ================= */
+.hero-3d-stage {
+  position: relative;
+  transform: scale(0.72);
+  transform-origin: center;
+}
+@media (min-width: 640px) {
+  .hero-3d-stage {
+    transform: scale(0.85);
+  }
+}
+@media (min-width: 1024px) {
+  .hero-3d-stage {
+    transform: scale(1);
+  }
+}
+
+.truck-container {
+  perspective: 1200px;
+}
+
+.truck {
+  animation: truckMove 5s ease-in-out infinite alternate;
+}
+
+@keyframes truckMove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(15px);
+  }
+}
+
+.truck-3d {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  transform: rotateY(-12deg) rotateX(3deg);
+  transform-style: preserve-3d;
+}
+
+.ground-shadow {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: -10px;
+  height: 26px;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(26, 59, 102, 0.2), transparent 70%);
+  filter: blur(3px);
+}
+
+.truck-underside {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 172px;
+  height: 26px;
+  background: linear-gradient(180deg, #c9d9ec, #93aecb);
+  border-radius: 0 0 8px 8px;
+}
+
+/* Trailer — blue box */
+.truck-trailer {
+  position: absolute;
+  left: 0;
+  top: 30px;
+  width: 66%;
+  height: 142px;
+  background: linear-gradient(180deg, #2b75a4, #1a3b66 75%);
+  border-radius: 10px 6px 6px 10px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 18px 36px rgba(26, 59, 102, 0.25);
+  overflow: hidden;
+}
+.truck-trailer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.06));
+}
+.truck-trailer::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 0;
+  width: 8px;
+  background: linear-gradient(90deg, rgba(2, 6, 23, 0.5), rgba(2, 6, 23, 0.05));
+}
+
+.trailer-line {
+  position: absolute;
+  top: 24px;
+  bottom: 12px;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.14);
+}
+.trailer-line-a {
+  left: 30%;
+}
+.trailer-line-b {
+  left: 68%;
+}
+
+.trailer-logo {
+  position: absolute;
+  inset: 18px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.trailer-logo strong {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0.26em;
+  color: #ffffff;
+  text-indent: 0.26em;
+  text-shadow: 0 2px 8px rgba(2, 6, 23, 0.4);
+}
+.trailer-logo strong span {
+  color: #ffb73c;
+}
+.trailer-logo small {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  color: rgba(255, 255, 255, 0.7);
+  text-indent: 0.4em;
+}
+
+/* Cab — red gradient with angular windshield */
+.truck-cab {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: 30%;
+  height: 122px;
+  background: linear-gradient(135deg, #ff5a3c 0%, #e60012 52%, #a30d12 100%);
+  border-radius: 16px 12px 12px 16px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 18px 36px rgba(230, 0, 18, 0.22);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.driver {
+  position: absolute;
+  top: 18px;
+  right: 18%;
+  width: 30px;
+  height: 54px;
+  background: #1e293b;
+  border-radius: 50% 50% 42% 42% / 62% 62% 38% 38%;
+  box-shadow: inset 0 -8px 10px rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.cab-windshield {
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  width: 54%;
+  height: 72px;
+  background: linear-gradient(180deg, rgba(224, 242, 254, 0.95), rgba(125, 211, 252, 0.35));
+  clip-path: polygon(0 0, 100% 0, 100% 68%, 0 100%);
+  box-shadow: inset -4px -6px 12px rgba(2, 6, 23, 0.35);
+  z-index: 2;
+}
+
+.cab-grill {
+  position: absolute;
+  top: 46px;
+  right: 4px;
+  width: 12px;
+  height: 60px;
+  background: repeating-linear-gradient(180deg, #1e293b 0 5px, #64748b 5px 7px);
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.cab-headlight {
+  position: absolute;
+  right: 10px;
+  bottom: 14px;
+  width: 26px;
+  height: 9px;
+  background: #ffb73c;
+  border-radius: 4px;
+  box-shadow: 0 0 14px rgba(255, 183, 60, 0.9);
+  z-index: 2;
+}
+
+.headlight-beam {
+  position: absolute;
+  right: 34px;
+  bottom: 18px;
+  width: 140px;
+  height: 28px;
+  background: linear-gradient(90deg, rgba(255, 183, 60, 0.35), rgba(255, 183, 60, 0));
+  clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 80%);
+  filter: blur(2px);
+  animation: beamFlicker 4s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes beamFlicker {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+/* Wheels — black tyre ring + silver/grey spinning rim */
+.wheel {
+  position: absolute;
+  bottom: -6px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 32%, #4b5563 0%, #0a0c10 55%, #000 78%);
+  border: 7px solid #05070c;
+  box-shadow:
+    0 10px 18px rgba(26, 59, 102, 0.25),
+    inset 0 3px 6px rgba(255, 255, 255, 0.18);
+  z-index: 3;
+}
+.wheel-rim {
+  position: absolute;
+  inset: 9px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(#e5e7eb 0deg 40deg, #94a3b8 40deg 80deg);
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 3px #cbd5e1;
+  animation: wheelSpin 1.3s linear infinite;
+}
+.wheel-hub {
+  position: absolute;
+  inset: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #f8fafc, #94a3b8 70%);
+  box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.35);
+}
+.wheel-trailer {
+  left: 14%;
+}
+.wheel-cab {
+  right: 12%;
+}
+
+@keyframes wheelSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================= 3D TILT CARD ================= */
+.tilt-card {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: transform 0.35s ease-out, box-shadow 0.35s ease-out;
+  will-change: transform;
+}
+.tilt-card-inner {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Glossy sheen over the card image */
+.gloss-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.08) 35%,
+    transparent 55%
+  );
+  pointer-events: none;
+}
+
+/* ================= MORE PRODUCTS GALLERY ================= */
+.gallery-track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0.5rem 0 1.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+.gallery-track > * {
+  scroll-snap-align: start;
+}
+.gallery-track::-webkit-scrollbar {
+  height: 8px;
+}
+.gallery-track::-webkit-scrollbar-track {
+  background: rgba(26, 59, 102, 0.06);
+  border-radius: 9999px;
+}
+.gallery-track::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 9999px;
+}
