@@ -83,6 +83,27 @@
   }
 }
 
+/* ================= LOGO — WHITE BACKGROUND ================= */
+.logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  object-fit: contain;
+  padding: 2px;
+  box-shadow: 0 0 0 1px rgba(229, 231, 235, 1);
+  flex-shrink: 0;
+}
+@media (min-width: 640px) {
+  .logo-img {
+    width: 44px;
+    height: 44px;
+  }
+}
+.logo-img-dark {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
 /* ================= HERO — YELLOW SHAPE ================= */
 /* Organic uneven yellow blob on the left, blue fills the rest */
 .hero-shape {
