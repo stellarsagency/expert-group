@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeader();
   initMobileMenu();
   initCounters();
-  initTilt();
   initGallery();
   initContactForm();
   renderYear();
@@ -55,37 +54,6 @@ function initMobileMenu() {
 
   toggle.addEventListener("click", () => setOpen(menu.classList.contains("hidden")));
   menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
-}
-
-/* ---------- 3D tilt: product cards container, max 10deg; disabled on mobile ---------- */
-function initTilt() {
-  const container = document.getElementById("productTiltContainer");
-  if (!container) return;
-
-  const MAX_TILT_Y = 8;
-  const MAX_TILT_X = 4;
-  let enabled = window.innerWidth >= 768;
-
-  const onMove = (event) => {
-    if (!enabled) return;
-    const rect = container.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-    container.style.transform = `perspective(1000px) rotateX(${(y * -MAX_TILT_X * 2).toFixed(2)}deg) rotateY(${(x * MAX_TILT_Y * 2).toFixed(2)}deg)`;
-  };
-
-  const onLeave = () => {
-    container.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
-  };
-
-  const onResize = () => {
-    enabled = window.innerWidth >= 768;
-    if (!enabled) container.style.transform = "";
-  };
-
-  container.addEventListener("mousemove", onMove);
-  container.addEventListener("mouseleave", onLeave);
-  window.addEventListener("resize", onResize);
 }
 
 /* ---------- Certification count-up via IntersectionObserver ---------- */

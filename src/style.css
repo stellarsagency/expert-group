@@ -127,7 +127,7 @@
   }
 }
 
-/* ================= HERO — PREMIUM PRODUCT CARDS ================= */
+/* ================= HERO — TRUST BADGES ================= */
 .hero-glow-right {
   position: absolute;
   top: 30%;
@@ -135,57 +135,50 @@
   width: 480px;
   height: 480px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(250, 204, 21, 0.1), transparent 70%);
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.12), transparent 70%);
   filter: blur(40px);
   z-index: 0;
   pointer-events: none;
 }
 
-.premium-card {
+.trust-card {
   position: relative;
-  border-radius: 20px;
-  padding: 20px 16px 16px;
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.55) 60%);
+  border-radius: 18px;
+  padding: 20px 14px 16px;
+  text-align: center;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.55) 60%);
   border: 1px solid rgba(148, 163, 184, 0.35);
   box-shadow:
-    0 24px 48px -16px rgba(15, 23, 42, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  overflow: hidden;
+    0 20px 40px -14px rgba(15, 23, 42, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   animation: floatCard 6s ease-in-out infinite;
-  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   z-index: 1;
 }
-.premium-card:nth-child(2) {
-  animation-delay: 1.2s;
+.trust-card:nth-child(2) {
+  animation-delay: 1s;
 }
-.premium-card:nth-child(3) {
-  animation-delay: 2.4s;
+.trust-card:nth-child(3) {
+  animation-delay: 2s;
 }
-.premium-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(120% 90% at 50% 0%, rgba(255, 214, 90, 0.14), transparent 55%);
-  pointer-events: none;
+.trust-card:nth-child(4) {
+  animation-delay: 0.5s;
 }
-.premium-card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 14%;
-  right: 14%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 214, 90, 0.8), transparent);
-  pointer-events: none;
+.trust-card:nth-child(5) {
+  animation-delay: 1.5s;
 }
-.premium-card:hover {
+.trust-card:nth-child(6) {
+  animation-delay: 2.5s;
+}
+.trust-card:hover {
+  animation: none;
+  transform: translateY(-5px);
   border-color: rgba(234, 179, 8, 0.55);
   box-shadow:
-    0 30px 60px -18px rgba(15, 23, 42, 0.35),
-    0 0 30px -6px rgba(234, 179, 8, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    0 26px 50px -16px rgba(15, 23, 42, 0.3),
+    0 0 26px -8px rgba(234, 179, 8, 0.35);
 }
 
 @keyframes floatCard {
@@ -198,77 +191,35 @@
   }
 }
 
-.premium-badge {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 3px 12px;
-  border-radius: 999px;
-  background: rgba(250, 204, 21, 0.14);
-  border: 1px solid rgba(250, 204, 21, 0.45);
-  color: #fde047;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  z-index: 2;
-  white-space: nowrap;
-}
-
-.premium-img {
-  position: relative;
-  margin: 28px auto 14px;
-  width: 100%;
-  height: 130px;
+.trust-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 12px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(135deg, #eab308, #f59e0b);
+  color: #ffffff;
+  box-shadow: 0 10px 20px -6px rgba(234, 179, 8, 0.5);
 }
-.premium-img::before {
-  content: "";
-  position: absolute;
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(250, 204, 21, 0.32), transparent 70%);
-  filter: blur(6px);
-}
-.premium-img img {
-  position: relative;
-  max-height: 128px;
-  max-width: 92%;
-  object-fit: contain;
-  filter: drop-shadow(0 14px 18px rgba(2, 6, 23, 0.55));
-  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-.premium-card:hover .premium-img img {
-  transform: scale(1.07);
+.trust-icon i {
+  width: 26px;
+  height: 26px;
 }
 
-.premium-name {
-  text-align: center;
+.trust-title {
   color: #1e293b;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 
-.premium-divider {
-  width: 42px;
-  height: 2px;
-  margin: 10px auto 8px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, transparent, #f59e0b, transparent);
-}
-
-.premium-tag {
-  text-align: center;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.trust-text {
+  margin-top: 5px;
   color: #64748b;
+  font-size: 12px;
+  line-height: 1.45;
 }
 /* Truck AND driver animate together (10px drift) */
 .truck-assembly {
