@@ -21,8 +21,8 @@
 .white-box-bg {
   background-color: #ffffff;
   background-image:
-    linear-gradient(rgba(200, 200, 200, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200, 200, 200, 0.1) 1px, transparent 1px);
+    repeating-linear-gradient(0deg, rgba(200, 200, 200, 0.1) 1px, transparent 1px),
+    repeating-linear-gradient(90deg, rgba(200, 200, 200, 0.1) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
@@ -68,38 +68,126 @@
   background-size: 20px 20px;
 }
 
-/* ================= HERO — CSS 3D TRUCK ================= */
-.hero-3d-stage {
-  position: relative;
-  transform: scale(0.72);
-  transform-origin: center;
+/* ================= YELLOW CIRCLE — BEHIND TRUCK ================= */
+.hero-circle {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background-color: #ffc107;
+  box-shadow: 0 0 80px rgba(255, 193, 7, 0.4);
 }
-@media (min-width: 640px) {
-  .hero-3d-stage {
-    transform: scale(0.85);
+@media (min-width: 1024px) {
+  .hero-circle {
+    width: 500px;
+    height: 500px;
+  }
+}
+
+/* ================= HERO — LAMP + LIGHT BEAM (PURE CSS) ================= */
+/* Lamp rig — hangs directly above the truck */
+.lamp-rig {
+  position: absolute;
+  top: -175px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+}
+@media (min-width: 1024px) {
+  .lamp-rig {
+    top: -215px;
+  }
+}
+
+.lamp-pole {
+  width: 8px;
+  height: 130px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #e2e8f0, #94a3b8);
+  border-radius: 4px;
+}
+@media (min-width: 1024px) {
+  .lamp-pole {
+    height: 170px;
+  }
+}
+
+.lamp-head {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #64748b, #475569);
+  border-radius: 12px 12px 4px 4px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.lamp-bulb {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 14px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 50% 50%, #fef08a, #facc15 60%, rgba(250, 204, 21, 0.5));
+  box-shadow: 0 0 24px 10px rgba(250, 204, 21, 0.6);
+  animation: lampFlicker 3s ease-in-out infinite;
+}
+
+.light-beam {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-45deg);
+  width: 320px;
+  height: 420px;
+  border-radius: 50%;
+  background-color: rgba(250, 204, 21, 0.3);
+  filter: blur(16px);
+  animation: lampFlicker 3s ease-in-out infinite;
+  z-index: 5;
+}
+@media (min-width: 1024px) {
+  .light-beam {
+    width: 420px;
+    height: 520px;
   }
 }
 @media (min-width: 1024px) {
-  .hero-3d-stage {
-    transform: scale(1);
+  .light-beam {
+    width: 400px;
+    height: 500px;
+  }
+}
+
+@keyframes lampFlicker {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ================= HERO — CSS 3D TRUCK + DRIVER ASSEMBLY ================= */
+/* Truck AND driver animate together (10px drift) */
+.truck-assembly {
+  position: relative;
+  animation: truckDrive 5s ease-in-out infinite alternate;
+}
+
+@keyframes truckDrive {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(10px);
   }
 }
 
 .truck-container {
   perspective: 1200px;
-}
-
-.truck {
-  animation: truckMove 5s ease-in-out infinite alternate;
-}
-
-@keyframes truckMove {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(15px);
-  }
 }
 
 .truck-3d {
@@ -110,14 +198,15 @@
   transform-style: preserve-3d;
 }
 
+/* Dark cast shadow on the floor — realistic under lamp light */
 .ground-shadow {
   position: absolute;
   left: 4%;
   right: 4%;
   bottom: -10px;
   height: 26px;
-  background: radial-gradient(50% 50% at 50% 50%, rgba(26, 59, 102, 0.2), transparent 70%);
-  filter: blur(3px);
+  background: radial-gradient(50% 50% at 50% 50%, rgba(2, 6, 23, 0.55), transparent 70%);
+  filter: blur(4px);
 }
 
 .truck-underside {
@@ -205,7 +294,7 @@
   text-indent: 0.4em;
 }
 
-/* Cab — red gradient with angular windshield */
+/* Cab — red gradient (driver silhouette moved outside) */
 .truck-cab {
   position: absolute;
   right: 0;
@@ -221,16 +310,18 @@
   z-index: 2;
 }
 
-.driver {
+/* Driver — standing OUTSIDE the cab, moves exactly with the truck */
+.driver-standing {
   position: absolute;
-  top: 18px;
-  right: 18%;
-  width: 30px;
-  height: 54px;
+  right: -34px;
+  bottom: 16px;
+  width: 32px;
+  height: 48px;
   background: #1e293b;
-  border-radius: 50% 50% 42% 42% / 62% 62% 38% 38%;
+  border-radius: 9999px 9999px 0 0;
   box-shadow: inset 0 -8px 10px rgba(0, 0, 0, 0.6);
-  z-index: 1;
+  transform: rotate(10deg);
+  z-index: 4;
 }
 
 .cab-windshield {
@@ -325,6 +416,9 @@
 .wheel-trailer {
   left: 14%;
 }
+.wheel-trailer-b {
+  left: 38%;
+}
 .wheel-cab {
   right: 12%;
 }
@@ -338,7 +432,13 @@
   }
 }
 
-/* ================= 3D TILT CARD ================= */
+/* ================= 3D TILT — PRODUCT CARDS CONTAINER ================= */
+#productTiltContainer {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.35s ease-out;
+  will-change: transform;
+}
 .tilt-card {
   transform-style: preserve-3d;
   backface-visibility: hidden;

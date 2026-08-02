@@ -57,25 +57,35 @@ function initMobileMenu() {
   menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
 }
 
-/* ---------- 3D tilt: max rotateY(12deg), rotateX(-8deg); disabled on mobile ---------- */
+/* ---------- 3D tilt: product cards container, max 10deg; disabled on mobile ---------- */
 function initTilt() {
-  if (window.innerWidth < 768) return;
+  const container = document.getElementById("productTiltContainer");
+  if (!container) return;
 
-  const MAX_Y = 12;
-  const MAX_X = -8;
+  const MAX_TILT_Y = 8;
+  const MAX_TILT_X = 4;
+  let enabled = window.innerWidth >= 768;
 
-  document.querySelectorAll("[data-tilt]").forEach((card) => {
-    card.addEventListener("mousemove", (event) => {
-      const rect = card.getBoundingClientRect();
-      const px = (event.clientX - rect.left) / rect.width - 0.5;
-      const py = (event.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `perspective(1000px) rotateY(${(px * MAX_Y * 2).toFixed(2)}deg) rotateX(${(py * MAX_X * 2).toFixed(2)}deg)`;
-    });
+  const onMove = (event) => {
+    if (!enabled) return;
+    const rect = container.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    container.style.transform = `perspective(1000px) rotateX(${(y * -MAX_TILT_X * 2).toFixed(2)}deg) rotateY(${(x * MAX_TILT_Y * 2).toFixed(2)}deg)`;
+  };
 
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "perspective(1000px) rotateY(0deg) rotateX(0deg)";
-    });
-  });
+  const onLeave = () => {
+    container.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+  };
+
+  const onResize = () => {
+    enabled = window.innerWidth >= 768;
+    if (!enabled) container.style.transform = "";
+  };
+
+  container.addEventListener("mousemove", onMove);
+  container.addEventListener("mouseleave", onLeave);
+  window.addEventListener("resize", onResize);
 }
 
 /* ---------- Certification count-up via IntersectionObserver ---------- */
