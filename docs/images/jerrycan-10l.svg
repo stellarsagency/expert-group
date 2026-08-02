@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 320" fill="none">
+  <defs>
+    <linearGradient id="jug" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#3B9ED1"/>
+      <stop offset="1" stop-color="#1A3B66"/>
+    </linearGradient>
+    <linearGradient id="sheen2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path d="M84 150 C40 152 40 92 104 88 L104 108 C68 112 68 134 84 134 Z" fill="#2B75A4"/>
+  <rect x="112" y="64" width="76" height="46" fill="#2B75A4"/>
+  <rect x="120" y="44" width="60" height="22" rx="6" fill="#FFB73C"/>
+  <path d="M84 110 Q84 86 108 86 L192 86 Q216 86 216 110 L216 276 Q216 300 192 300 L108 300 Q84 300 84 276 Z" fill="url(#jug)"/>
+  <rect x="98" y="100" width="14" height="186" rx="7" fill="url(#sheen2)"/>
+  <rect x="100" y="160" width="100" height="86" rx="10" fill="#FFFFFF"/>
+  <text x="150" y="192" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="800" fill="#1A3B66">AdBlue®</text>
+  <rect x="110" y="200" width="80" height="26" rx="6" fill="#FFB73C"/>
+  <text x="150" y="219" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" fill="#1A3B66">10 L</text>
+</svg>
