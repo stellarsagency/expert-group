@@ -83,94 +83,172 @@
   }
 }
 
-/* ================= HERO — LAMP + LIGHT BEAM (PURE CSS) ================= */
-/* Lamp rig — hangs directly above the truck */
-.lamp-rig {
+/* ================= HERO — YELLOW SHAPE ================= */
+/* Organic uneven yellow blob on the left, blue fills the rest */
+.hero-shape {
   position: absolute;
-  top: -175px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 20;
+  top: 22%;
+  left: 0;
+  width: 52%;
+  height: 60%;
+  background: linear-gradient(135deg, #ca8a04 0%, #eab308 100%);
+  border-radius: 38% 48% 52% 38% / 30% 30% 42% 30%;
+  z-index: 0;
 }
-@media (min-width: 1024px) {
-  .lamp-rig {
-    top: -215px;
+@media (max-width: 1023px) {
+  .hero-shape {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 62vh;
+    min-height: 420px;
+    border-radius: 0 0 48% 48% / 0 0 22% 22%;
   }
 }
 
-.lamp-pole {
-  width: 8px;
-  height: 130px;
-  margin: 0 auto;
-  background: linear-gradient(180deg, #e2e8f0, #94a3b8);
-  border-radius: 4px;
-}
-@media (min-width: 1024px) {
-  .lamp-pole {
-    height: 170px;
-  }
-}
-
-.lamp-head {
-  position: relative;
-  width: 44px;
-  height: 24px;
-  margin: 0 auto;
-  background: linear-gradient(180deg, #64748b, #475569);
-  border-radius: 12px 12px 4px 4px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
-}
-
-.lamp-bulb {
+/* ================= HERO — PREMIUM PRODUCT CARDS ================= */
+.hero-glow-right {
   position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 30px;
-  height: 14px;
-  border-radius: 9999px;
-  background: radial-gradient(circle at 50% 50%, #fef08a, #facc15 60%, rgba(250, 204, 21, 0.5));
-  box-shadow: 0 0 24px 10px rgba(250, 204, 21, 0.6);
-  animation: lampFlicker 3s ease-in-out infinite;
-}
-
-.light-beam {
-  position: absolute;
-  top: -60px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-45deg);
-  width: 320px;
-  height: 420px;
+  top: 30%;
+  right: -15%;
+  width: 480px;
+  height: 480px;
   border-radius: 50%;
-  background-color: rgba(250, 204, 21, 0.3);
-  filter: blur(16px);
-  animation: lampFlicker 3s ease-in-out infinite;
-  z-index: 5;
-}
-@media (min-width: 1024px) {
-  .light-beam {
-    width: 420px;
-    height: 520px;
-  }
-}
-@media (min-width: 1024px) {
-  .light-beam {
-    width: 400px;
-    height: 500px;
-  }
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.1), transparent 70%);
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
 }
 
-@keyframes lampFlicker {
+.premium-card {
+  position: relative;
+  border-radius: 20px;
+  padding: 20px 16px 16px;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03) 60%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 24px 48px -16px rgba(2, 6, 23, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  overflow: hidden;
+  animation: floatCard 6s ease-in-out infinite;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  z-index: 1;
+}
+.premium-card:nth-child(2) {
+  animation-delay: 1.2s;
+}
+.premium-card:nth-child(3) {
+  animation-delay: 2.4s;
+}
+.premium-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 50% 0%, rgba(255, 214, 90, 0.14), transparent 55%);
+  pointer-events: none;
+}
+.premium-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 14%;
+  right: 14%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 214, 90, 0.8), transparent);
+  pointer-events: none;
+}
+.premium-card:hover {
+  border-color: rgba(250, 204, 21, 0.5);
+  box-shadow:
+    0 30px 60px -18px rgba(2, 6, 23, 0.8),
+    0 0 30px -6px rgba(250, 204, 21, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+@keyframes floatCard {
   0%,
   100% {
-    opacity: 0.9;
+    transform: translateY(0);
   }
   50% {
-    opacity: 1;
+    transform: translateY(-10px);
   }
 }
 
-/* ================= HERO — CSS 3D TRUCK + DRIVER ASSEMBLY ================= */
+.premium-badge {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: rgba(250, 204, 21, 0.14);
+  border: 1px solid rgba(250, 204, 21, 0.45);
+  color: #fde047;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.premium-img {
+  position: relative;
+  margin: 28px auto 14px;
+  width: 100%;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.premium-img::before {
+  content: "";
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.32), transparent 70%);
+  filter: blur(6px);
+}
+.premium-img img {
+  position: relative;
+  max-height: 128px;
+  max-width: 92%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 18px rgba(2, 6, 23, 0.55));
+  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.premium-card:hover .premium-img img {
+  transform: scale(1.07);
+}
+
+.premium-name {
+  text-align: center;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.premium-divider {
+  width: 42px;
+  height: 2px;
+  margin: 10px auto 8px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #facc15, transparent);
+}
+
+.premium-tag {
+  text-align: center;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
 /* Truck AND driver animate together (10px drift) */
 .truck-assembly {
   position: relative;
@@ -322,6 +400,12 @@
   box-shadow: inset 0 -8px 10px rgba(0, 0, 0, 0.6);
   transform: rotate(10deg);
   z-index: 4;
+}
+@media (max-width: 1023px) {
+  .driver-standing {
+    right: -4px;
+    transform: rotate(10deg) scale(0.9);
+  }
 }
 
 .cab-windshield {
